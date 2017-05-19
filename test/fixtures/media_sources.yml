@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  titles_id: 1
+  source_id: 1
+  free: false
+  price_low: 1
+  price_high: 1
+
+two:
+  titles_id: 1
+  source_id: 1
+  free: false
+  price_low: 1
+  price_high: 1
