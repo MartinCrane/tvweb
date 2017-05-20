@@ -1,12 +1,11 @@
 
 
-Account.create(name:'Martin Crane', password_digest: '1', username:'mc', email:'m@m.com')
-Title.create(title: 'Fantastic Beasts and Where to Find Them', year: 2016, wikipedia_id: 47569084, duration: 7440)
+Account.create(name: 'martin', email: 'm@m.com', password:'1', username: 'maaaaa')
 Credit.create(name: "Jenn Murray", imdb: 'nm2893183', box: 372304)
 Credit.create(name: "Alison Sudol", imdb: 'nm0837223', box: 343968)
 Credit.create(name: "Colin Farrell", imdb: 'nm0268199', box: 643718)
 Playlist.create(name: "Home", creator: Account.first, account_base: true)
-Title.first.directors << Credit.first
+
 
 null = 'null'
 sources = [

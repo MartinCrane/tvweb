@@ -8,20 +8,18 @@ module TitleAPI
   OIMDB_KEY = ENV["box_key"]
   OIMDB_URL = 'http://api-public.guidebox.com/v2/'
 
-  def self.movie_box_id(id)
-    movie = JSON.parse(RestClient.get(BOX_URL + 'movies/' + id + '?api_key=' + BOX_KEY))
+  def search_box_id(id, type)
+    movie = JSON.parse(RestClient.get(BOX_URL + type + id + '?api_key=' + BOX_KEY))
   end
 
-  def self.movie_imdb_id(id)
+  def search_box_title(title, type)
+    movie = JSON.parse(RestClient.get(BOX_URL + 'search?api_key=' + BOX_KEY + '&type=' + type + '&field=title&query=' + title))
+  end
+
+  def movie_imdb_id(id)
     movie = JSON.parse(RestClient.get(BOX_URL + 'search?type=movie&field=id&id_type=imdb&query=' + id + '&api_key=' + BOX_KEY ))
   end
 
-  def self.search_OMDB(title)
-    results = JSON.parse(RestClient.get(OIMDB_URL + 'search?type=movie&field=id&id_type=imdb&query=' + title + '&api_key=' + OIMDB_KEY ))
-  end
-
-  def method_name
-
-  end
-
 end
+
+# http://api-public.guidebox.com/v2/search?api_key=534dc02916b971fff8f4fc00b6b9e634cb36855a&type=movies&field=title&query=tommy boy

@@ -46,21 +46,21 @@ ActiveRecord::Schema.define(version: 20170518235915) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "playlist_titles", force: :cascade do |t|
-    t.integer "playlist_id"
-    t.integer "title_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["playlist_id"], name: "index_playlist_titles_on_playlist_id"
-    t.index ["title_id"], name: "index_playlist_titles_on_title_id"
-  end
-
   create_table "playlists", force: :cascade do |t|
     t.string "name"
     t.integer "creator_id"
     t.boolean "account_base"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "playlists_titles", force: :cascade do |t|
+    t.integer "playlist_id"
+    t.integer "title_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["playlist_id"], name: "index_playlists_titles_on_playlist_id"
+    t.index ["title_id"], name: "index_playlists_titles_on_title_id"
   end
 
   create_table "sources", force: :cascade do |t|
@@ -94,14 +94,17 @@ ActiveRecord::Schema.define(version: 20170518235915) do
   end
 
   create_table "titles", force: :cascade do |t|
-    t.string "title"
-    t.integer "year"
+    t.string "original_title"
+    t.integer "release_year"
     t.integer "wikipedia_id"
     t.integer "duration"
     t.string "imdb"
     t.integer "rottentomatoes"
+    t.integer "box_id"
     t.string "themoviedb"
     t.string "metacritic"
+    t.string "poster_120x171"
+    t.string "poster_240x342"
     t.text "overview"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

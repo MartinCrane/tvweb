@@ -1,0 +1,22 @@
+LOG:  database system was shut down at 2017-05-19 15:32:58 EDT
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+ERROR:  relation "playlists_titles" does not exist at character 45
+STATEMENT:  SELECT  "titles".* FROM "titles" INNER JOIN "playlists_titles" ON "titles"."id" = "playlists_titles"."title_id" WHERE "playlists_titles"."playlist_id" = $1 LIMIT $2
+ERROR:  relation "playlists_titles" does not exist at character 566
+STATEMENT:                SELECT a.attname, format_type(a.atttypid, a.atttypmod),
+	                     pg_get_expr(d.adbin, d.adrelid), a.attnotnull, a.atttypid, a.atttypmod,
+	                     c.collname, col_description(a.attrelid, a.attnum) AS comment
+	                FROM pg_attribute a
+	                LEFT JOIN pg_attrdef d ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+	                LEFT JOIN pg_type t ON a.atttypid = t.oid
+	                LEFT JOIN pg_collation c ON a.attcollation = c.oid AND a.attcollation <> t.typcollation
+	               WHERE a.attrelid = '"playlists_titles"'::regclass
+	                 AND a.attnum > 0 AND NOT a.attisdropped
+	               ORDER BY a.attnum
+	
+ERROR:  column playlist_followers.account_id does not exist at character 63
+STATEMENT:  SELECT "playlist_followers".* FROM "playlist_followers" WHERE "playlist_followers"."account_id" = $1
+ERROR:  column playlist_followers.account_id does not exist at character 64
+STATEMENT:  SELECT  "playlist_followers".* FROM "playlist_followers" WHERE "playlist_followers"."account_id" = $1 LIMIT $2

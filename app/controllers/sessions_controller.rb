@@ -1,14 +1,14 @@
 require 'byebug'
 
 class SessionsController < ApplicationController
-  skip_before_action :authenticate
+  # skip_before_action :authenticate
 
   def create
     account = Account.authenticate(account_params[:email], account_params[:password])
     if account
       payload = {account_id: account.id}
       token = Auth.issue(payload)
-      render json: {jwt: token, email: account.email}
+      render json: {jwt: token, name: account.name, playlists: account.playlists}
     else
       render json: {error: "Bad email or password"}, status: 401
     end

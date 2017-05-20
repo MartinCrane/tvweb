@@ -29,6 +29,7 @@ gem 'GuideboxWrapper', '~> 0.1.9'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
+gem 'active_model_serializers'
 gem 'bcrypt', '~> 3.1.7'
 gem "figaro"
 gem 'rack-cors', :require => 'rack/cors'
