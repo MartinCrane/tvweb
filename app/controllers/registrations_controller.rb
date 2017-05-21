@@ -1,6 +1,6 @@
 class RegistrationsController < ApplicationController
 
-
+  
   def create
     account=Account.new(account_params)
     if account.valid?

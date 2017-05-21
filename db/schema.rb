@@ -46,21 +46,23 @@ ActiveRecord::Schema.define(version: 20170518235915) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "playlist_titles", force: :cascade do |t|
+    t.integer "playlist_id"
+    t.integer "title_id"
+    t.integer "order"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["playlist_id"], name: "index_playlist_titles_on_playlist_id"
+    t.index ["title_id"], name: "index_playlist_titles_on_title_id"
+  end
+
   create_table "playlists", force: :cascade do |t|
     t.string "name"
     t.integer "creator_id"
     t.boolean "account_base"
+    t.integer "length"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "playlists_titles", force: :cascade do |t|
-    t.integer "playlist_id"
-    t.integer "title_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["playlist_id"], name: "index_playlists_titles_on_playlist_id"
-    t.index ["title_id"], name: "index_playlists_titles_on_title_id"
   end
 
   create_table "sources", force: :cascade do |t|
@@ -84,8 +86,7 @@ ActiveRecord::Schema.define(version: 20170518235915) do
 
   create_table "title_sources", force: :cascade do |t|
     t.integer "title_id"
-    t.integer "free_source_id"
-    t.integer "paid_source_id"
+    t.integer "source_id"
     t.boolean "free"
     t.integer "price_low"
     t.integer "price_high"
@@ -105,6 +106,8 @@ ActiveRecord::Schema.define(version: 20170518235915) do
     t.string "metacritic"
     t.string "poster_120x171"
     t.string "poster_240x342"
+    t.date "box_update"
+    t.string "media_type"
     t.text "overview"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

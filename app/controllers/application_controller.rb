@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   include ActionController::HttpAuthentication::Token::ControllerMethods
 
-  # before_action :authenticate
+  before_action :authenticate
 
   def authenticate
     render json: {error: "Unauthorized"}, status: 401 unless logged_in?

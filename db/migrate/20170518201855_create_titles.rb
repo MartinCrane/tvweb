@@ -12,6 +12,9 @@ class CreateTitles < ActiveRecord::Migration[5.1]
       t.string :metacritic
       t.string :poster_120x171
       t.string :poster_240x342
+      t.date :box_update
+      t.string :media_type
+
       t.text :overview
 
       t.timestamps

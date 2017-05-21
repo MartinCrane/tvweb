@@ -1,8 +1,15 @@
-class PlaylistSerializer < ActiveModel::Serializer
-  attributes :id, :name
+require 'byebug'
 
-  has_many :playlist_followers
-  has_many :followers, through: :playlist_followers, include_nested_associations: true
-  has_many :titles, include_nested_associations: true
-  belongs_to :creator
+class PlaylistSerializer < ActiveModel::Serializer
+  attributes :id, :name, :playlist_order, :length
+  has_many :followers
+
+  def playlist_order
+
+    order_array = []
+    object.playlist_titles.each do |item|
+      order_array[item.order] = item.title_id
+    end
+    order_array
+  end
 end

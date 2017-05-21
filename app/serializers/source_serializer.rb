@@ -1,3 +1,4 @@
 class SourceSerializer < ActiveModel::Serializer
-  attributes :id, :name, :display_name, :box_id
+  attributes :name, :display_name
+  
 end

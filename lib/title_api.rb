@@ -9,7 +9,7 @@ module TitleAPI
   OIMDB_URL = 'http://api-public.guidebox.com/v2/'
 
   def search_box_id(id, type)
-    movie = JSON.parse(RestClient.get(BOX_URL + type + id + '?api_key=' + BOX_KEY))
+    movie = JSON.parse(RestClient.get(BOX_URL + type + 's/' + id + '?api_key=' + BOX_KEY))
   end
 
   def search_box_title(title, type)

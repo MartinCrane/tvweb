@@ -4,8 +4,6 @@ Account.create(name: 'martin', email: 'm@m.com', password:'1', username: 'maaaaa
 Credit.create(name: "Jenn Murray", imdb: 'nm2893183', box: 372304)
 Credit.create(name: "Alison Sudol", imdb: 'nm0837223', box: 343968)
 Credit.create(name: "Colin Farrell", imdb: 'nm0268199', box: 643718)
-Playlist.create(name: "Home", creator: Account.first, account_base: true)
-
 
 null = 'null'
 sources = [
@@ -3128,3 +3126,16 @@ sources = [
 sources.each do |source|
   Source.create(name: source[:source], display_name: source[:display_name], box_id: source[:id], common: false, stream_type: source[:type])
 end
+
+Source.where(name:"hulu_plus").update_all(common: true)
+Source.where(name:"hulu_free").update_all(common: true)
+Source.where(name:"ifc").update_all(common: true)
+Source.where(name:"netflix").update_all(common: true)
+Source.where(name:"amazon_prime").update_all(common: true)
+Source.where(name:"amazon_prime_free").update_all(common: true)
+Source.where(name:"amazon_buy").update_all(common: true)
+Source.where(name:"fx").update_all(common: true)
+Source.where(name:"fx_tveverywhere").update_all(common: true)
+Source.where(name:"film_struck").update_all(common: true)
+Source.where(name:"amc").update_all(common: true)
+Source.where(name:"ifc").update_all(common: true)

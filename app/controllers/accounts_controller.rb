@@ -1,10 +1,10 @@
 class AccountsController < ApplicationController
 
-  def restore
-    @account = Account.first
-    playlists = @account.playlists
+  skip_before_action :authenticate
 
-    render json: {account: @account.as_json(include:[:sources]), playlists: playlists.as_json(include:[:titles, :followers]), followed_playlists: @account.followed_playlists.as_json}
+  def index
+    @account = Account.first
+    render json: @account
   end
 
   def edit
