@@ -4,7 +4,7 @@ class CreateSources < ActiveRecord::Migration[5.1]
       t.string :name
       t.string :display_name
       t.integer :box_id
-      t.boolean :common
+      t.boolean :common, default: false
       t.string :stream_type
 
       t.timestamps

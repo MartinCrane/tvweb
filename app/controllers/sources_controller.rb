@@ -1,5 +1,6 @@
+require 'byebug'
+
 class SourcesController < ApplicationController
-  before_action :authenticate
 
   def all
     render json: Source.all
@@ -8,4 +9,16 @@ class SourcesController < ApplicationController
   def common
     render json: Source.where(common: true)
   end
+
+  def updateSources
+    params[:addedSources].each do |source|
+      @account.addSource(Source.find(source))
+    end
+    params[:removedSources].each do |source|
+      @account.sources.destroy(Source.find(source))
+    end
+    render json: @account.sources
+  end
+
+
 end

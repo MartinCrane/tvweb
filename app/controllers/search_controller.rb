@@ -1,13 +1,9 @@
 require 'byebug'
 class SearchController < ApplicationController
-
-  before_action :authenticate
-
   def create
     api = Title.new
     results = api.search_box_title(search_params[:title], search_params[:type])['results']
     display_results = results.map do |title|
-
       unless  !!title_new = Title.find_by(box_id: title['id'])
         title_new = Title.parse_result(title, search_params[:type])
       end

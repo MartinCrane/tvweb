@@ -5,6 +5,7 @@ class CreatePlaylists < ActiveRecord::Migration[5.1]
       t.integer :creator_id
       t.boolean :account_base
       t.integer :length
+      t.integer :order, array:true, default: []
       t.timestamps
     end
   end

@@ -1,9 +1,6 @@
 class AccountsController < ApplicationController
 
-  skip_before_action :authenticate
-
-  def index
-    @account = Account.first
+  def restore
     render json: @account
   end
 

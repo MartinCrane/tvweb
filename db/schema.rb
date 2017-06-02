@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170518235915) do
+ActiveRecord::Schema.define(version: 20170528000854) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,7 +49,6 @@ ActiveRecord::Schema.define(version: 20170518235915) do
   create_table "playlist_titles", force: :cascade do |t|
     t.integer "playlist_id"
     t.integer "title_id"
-    t.integer "order"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["playlist_id"], name: "index_playlist_titles_on_playlist_id"
@@ -61,6 +60,23 @@ ActiveRecord::Schema.define(version: 20170518235915) do
     t.integer "creator_id"
     t.boolean "account_base"
     t.integer "length"
+    t.integer "order", default: [], array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "season_sources", force: :cascade do |t|
+    t.integer "season_id"
+    t.integer "source_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "seasons", force: :cascade do |t|
+    t.string "show_name"
+    t.integer "number"
+    t.integer "title_id"
+    t.integer "episode_box_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -69,7 +85,7 @@ ActiveRecord::Schema.define(version: 20170518235915) do
     t.string "name"
     t.string "display_name"
     t.integer "box_id"
-    t.boolean "common"
+    t.boolean "common", default: false
     t.string "stream_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -99,15 +115,19 @@ ActiveRecord::Schema.define(version: 20170518235915) do
     t.integer "release_year"
     t.integer "wikipedia_id"
     t.integer "duration"
-    t.string "imdb"
+    t.string "imdb_id"
     t.integer "rottentomatoes"
     t.integer "box_id"
     t.string "themoviedb"
     t.string "metacritic"
     t.string "poster_120x171"
     t.string "poster_240x342"
+    t.string "poster_400x570"
     t.date "box_update"
     t.string "media_type"
+    t.string "artwork_208x117"
+    t.string "artwork_304x171"
+    t.string "artwork_448x252"
     t.text "overview"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

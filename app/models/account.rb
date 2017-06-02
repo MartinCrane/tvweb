@@ -1,4 +1,5 @@
 class Account < ApplicationRecord
+
   has_many :account_sources
   has_many :sources, through: :account_sources
   has_many :playlists, foreign_key: 'creator_id'
@@ -8,8 +9,7 @@ class Account < ApplicationRecord
 
   validates :username, presence: true, uniqueness: true, length: {maximum: 50}
   validates :email, presence: true, uniqueness: true, length: {maximum: 50}
-  validates :password, length: {in: 1..50}
-
+  # validates :password, length: {in: 1..50}
   has_secure_password
 
   after_create :home_playlist
@@ -32,6 +32,13 @@ class Account < ApplicationRecord
   def self.authenticate(email, password)
     account = Account.find_by(email: email)
     account && account.authenticate(password)
+  end
+
+  def addSource(source)
+    if self.sources.find_by(id: source.id)
+    else
+      self.sources << source
+    end
   end
 
 end

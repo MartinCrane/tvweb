@@ -50,3 +50,18 @@ ERROR:  column sources.title_id does not exist at character 42
 STATEMENT:  SELECT  "sources".* FROM "sources" WHERE "sources"."title_id" = $1 LIMIT $2
 ERROR:  column sources.title_id does not exist at character 42
 STATEMENT:  SELECT  "sources".* FROM "sources" WHERE "sources"."title_id" = $1 LIMIT $2
+LOG:  unexpected EOF on client connection with an open transaction
+LOG:  autovacuum launcher shutting down
+LOG:  received smart shutdown request
+LOG:  shutting down
+LOG:  database system is shut down
+LOG:  database system was shut down at 2017-05-24 13:54:52 EDT
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+ERROR:  column titles.show does not exist at character 40
+STATEMENT:  SELECT  "titles".* FROM "titles" WHERE "titles"."show" = $1 LIMIT $2
+LOG:  autovacuum launcher shutting down
+LOG:  received smart shutdown request
+LOG:  shutting down
+LOG:  database system is shut down
