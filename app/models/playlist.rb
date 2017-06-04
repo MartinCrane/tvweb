@@ -33,7 +33,6 @@ class Playlist < ApplicationRecord
 
   def self.update_from_playlist_hash(playlist_hash)
     playlist_ids = playlist_hash.keys
-    byebug
     playlist_ids.each do |playlist_id|
       playlist_titles = playlist_hash[playlist_id]
       playlist = Playlist.find(playlist_id.to_i)

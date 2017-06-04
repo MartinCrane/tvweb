@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :titles, only: [:show, :create, :edit]
   resources :titles
   resources :search
-  resources :sources, only: [:index, :show]
+  resources :sources, only: [:index]
 
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'

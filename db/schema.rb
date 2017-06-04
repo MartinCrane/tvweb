@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20170528000854) do
     t.integer "number"
     t.integer "title_id"
     t.integer "episode_box_id"
+    t.integer "duration"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

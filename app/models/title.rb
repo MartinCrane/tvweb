@@ -37,7 +37,7 @@ class Title < ApplicationRecord
       if !!result['first_aired']
         date = result['first_aired'][0...4]
       end
-      Title.create(box_id: result['id'],
+      new_title = Title.create(box_id: result['id'],
                    media_type: type,
                    original_title: result['title'],
                    imdb_id: result['imdb_id'],
@@ -61,10 +61,7 @@ class Title < ApplicationRecord
     result = self.search_box_season_query(self.box_id.to_s, self.media_type)
     result['results'].each do |season|
       new_season = Season.create(number: season['season_number'].to_i, title:self, show_name:self.original_title)
-      season_results = self.search_box_season_episodes(self.box_id.to_s, self.media_type, new_season.number)['results'][0]
-      save_sources(season_results, new_season)
     end
-    update_box_date
   end
 
   def new_seasons?
@@ -91,16 +88,17 @@ class Title < ApplicationRecord
     end
 
     if self.show?
+      create_seasons
       self.seasons.each do |season|
         season_results = self.search_box_season_episodes(self.box_id.to_s, self.media_type, season.number)['results'][0]
-        save_sources(results, season)
+        save_sources(season_results, season)
       end
     end
   end
 
   def save_sources(results, item)
     item.sources.clear
-    item.update(duration: result['duration'])
+    item.update(duration: results['duration'])
     results['subscription_web_sources'].each do |title|
       item.sources << Source.find_by(name: title['source'])
     end
