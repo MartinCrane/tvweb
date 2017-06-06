@@ -16,13 +16,17 @@ class PlaylistsController < ApplicationController
     else
       render json: {error:'denial'}
     end
+  end
 
+  def create
+    Playlist.create(name: playlist_params[:name], creator: @account)
+    render json: @account.playlists
   end
 
   private
 
   def playlist_params
-    params.require(:playlist).permit(:playlistId, :titleId)
+    params.require(:playlist).permit(:playlistId, :titleId, :name)
   end
 
 end

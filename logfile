@@ -70,3 +70,7 @@ LOG:  MultiXact member wraparound protections are now enabled
 LOG:  database system is ready to accept connections
 LOG:  autovacuum launcher started
 LOG:  stats_timestamp 2017-06-02 20:30:00.434915-04 is later than collector's time 2017-06-02 20:30:00.19716-04 for database 0
+ERROR:  database "tvweb_development" already exists
+STATEMENT:  CREATE DATABASE "tvweb_development" ENCODING = 'unicode'
+ERROR:  database "tvweb_test" already exists
+STATEMENT:  CREATE DATABASE "tvweb_test" ENCODING = 'unicode'

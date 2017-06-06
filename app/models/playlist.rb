@@ -1,4 +1,5 @@
 require 'byebug'
+
 class Playlist < ApplicationRecord
   has_many :playlist_titles
   has_many :titles, through: :playlist_titles
@@ -7,6 +8,7 @@ class Playlist < ApplicationRecord
   has_many :playlist_followers
   has_many :followers, through: :playlist_followers
 
+  # validates :title_validations
   after_create :set_creator, :set_length
 
   def set_creator
@@ -20,7 +22,8 @@ class Playlist < ApplicationRecord
   def add_title(title)
     id = title.id
     self.titles << title
-    self.update(order: self.order << id)
+    new_order = self.order << id
+    self.update(order: new_order)
   end
 
   def remove_title(title)
@@ -43,4 +46,10 @@ class Playlist < ApplicationRecord
       end
     end
   end
+
+  # def title_validation
+  #   if x.titles.exists?(6)
+  #     errors.add(:expiration_date, "can't be in the past")
+  #   end
+  # end
 end

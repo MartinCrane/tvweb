@@ -12,6 +12,12 @@ class SearchController < ApplicationController
     render json: display_results
   end
 
+  def suggest
+    api = Title.new
+    results = api.movie_omdb_title(search_params[:title].parameterize)["Search"]
+    render json: results.to_json
+  end
+
   private
 
   def search_params
